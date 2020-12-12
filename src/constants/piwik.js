@@ -1,6 +1,6 @@
 
 export default {
-  URL: 'https://matomo.feel.io',
+  URL: 'https://matomo.feel.surf',
   SITE_ID: 1,
   DELETE_CUSTOM_VARIABLE: 'deleteCustomVariable',
   ENABLE_HEART_BEAT_TIMER: 'enableHeartBeatTimer',

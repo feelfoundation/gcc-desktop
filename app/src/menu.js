@@ -118,7 +118,7 @@ const menu = {
         submenu: [
           {
             label: i18n.t('Feel Website'),
-            click: menu.onClickLink.bind(null, electron, 'https://feel.io'),
+            click: menu.onClickLink.bind(null, electron, 'https://feel.surf'),
           },
           {
             label: i18n.t('Discord'),
@@ -126,11 +126,11 @@ const menu = {
           },
           {
             label: i18n.t('Provide Feedback'),
-            click: menu.onClickLink.bind(null, electron, 'https://feel.io/contact/i-want-provide-feedback-about-feel-product/form'),
+            click: menu.onClickLink.bind(null, electron, 'https://feel.surf/contact/i-want-provide-feedback-about-feel-product/form'),
           },
           {
             label: i18n.t('Feel Explorer'),
-            click: menu.onClickLink.bind(null, electron, 'https://explorer.feel.io'),
+            click: menu.onClickLink.bind(null, electron, 'https://explorer.feel.surf'),
           },
           {
             type: 'separator',

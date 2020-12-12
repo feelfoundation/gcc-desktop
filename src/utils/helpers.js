@@ -58,7 +58,7 @@ export const filterObjectPropsWithValue = (object = {}, value) => (
  * @returns {sting} mailto link with recipient, subject, and body
  */
 export const getErrorReportMailto = (error) => {
-  const recipient = 'hubdev@feel.io';
+  const recipient = 'hubdev@feel.surf';
   const subject = `User Reported Error - Feel - ${VERSION}`; // eslint-disable-line no-undef
   return `mailto:${recipient}?&subject=${subject}&body=${error}`;
 };

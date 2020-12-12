@@ -25,7 +25,7 @@ This is a live document, please expect updates and unfinished content.
 This project and everyone participating in it is governed by the
 [Feel Code of Conduct](https://github.com/feelfoundation/feel/blob/development/docs/CODE_OF_CONDUCT.md). By participating, you are
 expected to uphold this code. Please report the unacceptable behavior to
-[info@feel.io](mailto:info@feel.io).
+[info@feel.surf](mailto:info@feel.surf).
 
 ## Project License
 

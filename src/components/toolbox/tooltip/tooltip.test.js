@@ -11,7 +11,7 @@ describe('Tooltip wrapper', () => {
   const props = {
     title: 'Title of the tooltip',
     children: <p>Some text content here!</p>,
-    footer: <a href="http://feel.io" rel="noopener noreferrer" target="_blank">Read more</a>,
+    footer: <a href="http://feel.surf" rel="noopener noreferrer" target="_blank">Read more</a>,
   };
 
   beforeEach(() => {

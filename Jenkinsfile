@@ -15,7 +15,7 @@ pipeline {
 		stage('Install npm dependencies') {
 			steps {
 				nvm(getNodejsVersion()) {
-					sh 'npm install --registry https://npm.feel.io --no-optional'
+					sh 'npm install --registry https://npm.feel.surf --no-optional'
 				}
 			}
 		}

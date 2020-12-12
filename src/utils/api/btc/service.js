@@ -1,6 +1,6 @@
 import * as popsicle from 'popsicle';
 
-const feelServiceUrl = 'https://service.feel.io';
+const feelServiceUrl = 'https://service.feel.surf';
 
 // eslint-disable-next-line import/prefer-default-export
 export const getPriceTicker = () => new Promise(async (resolve, reject) => {

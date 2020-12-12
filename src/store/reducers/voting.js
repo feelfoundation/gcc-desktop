@@ -107,7 +107,7 @@ const voting = (state = { // eslint-disable-line complexity
     /**
      * This action is used when voting transaction is confirmed. It updates votes
      * based on response from votes API endpoint.
-     * https://feel.io/documentation/feel-core/api#/Votes
+     * https://feel.surf/documentation/feel-core/api#/Votes
      */
     case actionTypes.votesUpdated:
       return {

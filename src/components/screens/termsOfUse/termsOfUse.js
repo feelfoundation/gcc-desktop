@@ -49,7 +49,7 @@ class TermsOfUse extends React.Component {
             {this.props.t('Before you continue using Feel, please read and accept the')}
             <a
               onClick={this.checkTermsOfUse}
-              href="https://feel.io/terms-conditions"
+              href="https://feel.surf/terms-conditions"
               target="_blank"
               rel="noopener noreferrer"
             >

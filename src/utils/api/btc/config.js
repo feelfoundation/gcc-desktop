@@ -2,7 +2,7 @@ import * as bitcoin from 'bitcoinjs-lib';
 
 const getBtcConfig = netCode => ({
   isTestnet: netCode !== 0,
-  // url: netCode !== 0 ? 'https://btc-test.feel.io' : 'https://btc.feel.io',
+  // url: netCode !== 0 ? 'https://btc-test.feel.surf' : 'https://btc.feel.surf',
   url: '',
   minerFeesURL: 'https://bitcoinfees.earn.com/api/v1/fees/recommended',
   network: netCode !== 0 ? bitcoin.networks.testnet : bitcoin.networks.bitcoin,

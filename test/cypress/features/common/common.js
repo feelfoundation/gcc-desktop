@@ -37,7 +37,7 @@ Given(/^I am on (.*?) page$/, function (page) {
       cy.route('/api/node/constants').as('constants');
       cy.visit(urls.dashboard).then(() => {
         const feelCoreUrl = window.localStorage.getItem('feelCoreUrl');
-        const isDevNet = feelCoreUrl !== 'https://testnet.feel.io' && feelCoreUrl !== null;
+        const isDevNet = feelCoreUrl !== 'https://testnet.feel.surf' && feelCoreUrl !== null;
         if (isDevNet) cy.wait('@constants');
       });
       break;

@@ -27,7 +27,7 @@ describe('Utils: network API', () => {
 
     it('should create a new Feel APIClient instance if called with GCC token', () => {
       const nethash = Feel.APIClient.constants.MAINNET_NETHASH;
-      const nodeUrl = 'https://hub23.feel.io';
+      const nodeUrl = 'https://hub23.feel.surf';
       const state = {
         network: {
           name: networks.customNode.name,

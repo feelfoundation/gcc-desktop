@@ -1,6 +1,6 @@
 # Feel Desktop
 
-[![Build Status](https://jenkins.feel.io/buildStatus/icon?job=feel-desktop/development)](https://jenkins.feel.io/job/feel-desktop/job/development)
+[![Build Status](https://jenkins.feel.surf/buildStatus/icon?job=feel-desktop/development)](https://jenkins.feel.surf/job/feel-desktop/job/development)
 [![Coverage Status](https://coveralls.io/repos/github/feelfoundation/feel-desktop/badge.svg?branch=development)](https://coveralls.io/github/feelfoundation/feel-desktop?branch=development)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/feelfoundation/feel-desktop)

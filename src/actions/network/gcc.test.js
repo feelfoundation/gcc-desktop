@@ -39,7 +39,7 @@ describe('actions: network.gcc', () => {
         name: networks.mainnet.name,
         network: {
           name: networks.mainnet.name,
-          address: 'http://123.feel.io',
+          address: 'http://123.feel.surf',
         },
       };
       gccNetworkSet(data)(dispatch);
@@ -49,7 +49,7 @@ describe('actions: network.gcc', () => {
           token: tokenMap.GCC.key,
           network: {
             name: networks.mainnet.name,
-            address: 'http://123.feel.io',
+            address: 'http://123.feel.surf',
           },
         },
         type: actionTypes.networkSet,

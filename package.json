@@ -41,7 +41,7 @@
     "serve": "http-server",
     "percy": "build-storybook && percy-storybook --widths=769"
   },
-  "author": "Feel Foundation <admin@feel.io>, lightcurve GmbH <admin@lightcurve.io>",
+  "author": "Feel Foundation <admin@feel.surf>, lightcurve GmbH <admin@lightcurve.io>",
   "license": "GPL-3.0",
   "repository": {
     "type": "git",

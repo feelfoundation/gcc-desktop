@@ -77,7 +77,7 @@ describe('MenuBuilder', () => {
   });
 
   it('Should open link on click', () => {
-    menu.onClickLink(electron, 'https://feel.io');
-    expect(electron.shell.openExternal).to.have.been.calledWith('https://feel.io');
+    menu.onClickLink(electron, 'https://feel.surf');
+    expect(electron.shell.openExternal).to.have.been.calledWith('https://feel.surf');
   });
 });
