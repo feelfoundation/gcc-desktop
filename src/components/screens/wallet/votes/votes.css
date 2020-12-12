@@ -1,0 +1,82 @@
+@import '../../../../app/mixins.css';
+
+.wrapper {
+  margin-bottom: 40px;
+  overflow: initial;
+
+  & header {
+    justify-content: space-between;
+  }
+
+  & .filterHolder {
+    display: flex;
+
+    & .registerDelegate {
+      margin-right: 10px;
+    }
+  }
+
+  & .lastHeading {
+    & :global(.tooltip-window) {
+      & :global(.tooltip-arrow) {
+        right: 16px;
+        left: auto;
+      }
+    }
+  }
+}
+
+.empty {
+  @mixin contentSmall;
+
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-slate-gray);
+}
+
+.results {
+  border-radius: 0 0 var(--border-radius-box) var(--border-radius-box);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 0;
+  min-height: 600px;
+  position: relative;
+  padding: 0 !important;
+
+  & .votes {
+    @mixin contentNormal bold;
+  }
+}
+
+.info {
+  display: flex;
+
+  & > .avatar {
+    margin-right: 24px;
+  }
+
+  & > .accountInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  & .title {
+    @mixin headingSmall;
+
+    color: var(--color-maastricht-blue);
+    display: block;
+  }
+}
+
+@media (--small-viewport) {
+  .info {
+    & > .avatar {
+      display: none;
+    }
+  }
+}

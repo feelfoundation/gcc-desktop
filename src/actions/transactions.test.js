@@ -1,0 +1,207 @@
+import Feel from '@feelhq/feel-client';
+import actionTypes from '../constants/actions';
+import txFilters from '../constants/transactionFilters';
+import {
+  sent,
+  getTransactions,
+  updateTransactions,
+} from './transactions';
+import * as transactionsApi from '../utils/api/transactions';
+import { toRawGCC } from '../utils/gcc';
+
+jest.mock('../utils/api/transactions');
+jest.mock('../utils/api/delegates');
+
+describe.skip('actions: transactions', () => {
+  const dispatch = jest.fn();
+  let getState = () => ({
+    network: {
+      status: { online: true },
+      name: 'Mainnet',
+      networks: {
+        GCC: {
+          nodeUrl: 'hhtp://localhost:4500',
+          nethash: '198f2b61a8eb95fbeed58b8216780b68f697f26b849acf00c8c93bb9b24f783d',
+        },
+      },
+    },
+    transactions: {
+      filters: {
+        direction: txFilters.all,
+      },
+    },
+    settings: {
+      token: {
+        active: 'GCC',
+      },
+    },
+    blocks: {
+      latestBlocks: [{
+        timestamp: Feel.transaction.utils.getTimeFromBlockchainEpoch() - 12,
+      }],
+    },
+  });
+
+  describe('updateTransactions', () => {
+    const data = {
+      address: '15626650747375562521',
+      limit: 20,
+      offset: 0,
+      filters: { direction: txFilters.all },
+    };
+    const actionFunction = updateTransactions(data);
+
+    it('should dispatch updateTransactions action if resolved', async () => {
+      transactionsApi.getTransactions.mockResolvedValue({ data: [], meta: { count: '0' } });
+      const expectedAction = {
+        count: 0,
+        confirmed: [],
+      };
+
+      await actionFunction(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith({
+        data: expectedAction,
+        type: actionTypes.updateTransactions,
+      });
+    });
+  });
+
+  describe('getTransactions', () => {
+    const data = {
+      address: '15626650747375562521L',
+      limit: 20,
+      offset: 0,
+      filters: { direction: txFilters.all },
+    };
+    const actionFunction = getTransactions(data);
+
+    it('should create an action function', () => {
+      expect(typeof actionFunction).toBe('function');
+    });
+
+    it('should dispatch getTransactionsSuccess action if resolved', async () => {
+      transactionsApi.getTransactions.mockResolvedValue({ data: [], meta: { count: '0' } });
+      const expectedAction = {
+        count: 0,
+        confirmed: [],
+        address: data.address,
+        filters: data.filters,
+      };
+
+      await actionFunction(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith({
+        data: expectedAction, type: actionTypes.getTransactionsSuccess,
+      });
+    });
+  });
+
+  describe('sent', () => {
+    const data = {
+      recipientId: '15833198055097037957L',
+      amount: 100,
+      passphrase: 'sample passphrase',
+      secondPassphrase: null,
+      dynamicFeePerByte: null, // for BTC
+      fee: null, // for BTC
+      account: {
+        info: {
+          GCC: {
+            publicKey: 'test_public-key',
+            address: 'test_address',
+          },
+        },
+        loginType: 0,
+      },
+      data: 'abc',
+    };
+
+    const actionFunction = sent(data);
+
+    beforeEach(() => {
+      getState = () => ({
+        network: {
+          status: { online: true },
+          name: 'Mainnet',
+          networks: {
+            GCC: {
+              nodeUrl: 'hhtp://localhost:4500',
+              nethash: '198f2b61a8eb95fbeed58b8216780b68f697f26b849acf00c8c93bb9b24f783d',
+            },
+          },
+        },
+        transactions: { filter: txFilters.all },
+        settings: {
+          token: {
+            active: 'GCC',
+          },
+        },
+        account: data.account,
+        blocks: {
+          latestBlocks: [{
+            timestamp: Feel.transaction.utils.getTimeFromBlockchainEpoch() - 12,
+          }],
+        },
+      });
+    });
+
+    it('should create an action function', () => {
+      expect(typeof actionFunction).toBe('function');
+    });
+
+    it.skip('should dispatch addNewPendingTransaction action if resolved', async () => {
+      const expectedAction = {
+        id: '15626650747375562521',
+        senderPublicKey: 'test_public-key',
+        senderId: 'test_address',
+        recipientId: data.recipientId,
+        amount: toRawGCC(data.amount),
+        fee: 1e7,
+        asset: { data: undefined },
+        type: 0,
+        token: 'GCC',
+      };
+
+      transactionsApi.create.mockReturnValue(expectedAction);
+      transactionsApi.broadcast.mockReturnValue(expectedAction);
+
+      await actionFunction(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith({
+        data: new Date(), type: actionTypes.passphraseUsed,
+      });
+    });
+
+    it('should dispatch transactionFailed action if caught', async () => {
+      transactionsApi.create.mockImplementation(() => {
+        throw new Error('sample message');
+      });
+
+      const expectedAction = {
+        data: {
+          errorMessage: 'sample message.',
+        },
+        type: actionTypes.transactionFailed,
+      };
+
+      await actionFunction(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+
+    it('should dispatch transactionFailed action if caught but no message returned', async () => {
+      const errorMessage = 'An error occurred while creating the transaction';
+      transactionsApi.create.mockImplementation(() => {
+        throw new Error(errorMessage);
+      });
+
+      const expectedErrorMessage = errorMessage + '.'; // eslint-disable-line
+      const expectedAction = {
+        data: {
+          errorMessage: expectedErrorMessage,
+        },
+        type: actionTypes.transactionFailed,
+      };
+
+      await actionFunction(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+});

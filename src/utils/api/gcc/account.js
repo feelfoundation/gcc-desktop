@@ -1,0 +1,71 @@
+
+import Feel from '@feelhq/feel-client'; // eslint-disable-line
+import api from '..';
+import { tokenMap } from '../../../constants/tokens';
+import { getAPIClient } from './network';
+import { extractAddress, extractPublicKey } from '../../account';
+
+export const getAccount = params =>
+  new Promise((resolve, reject) => {
+    // TODO remove feelAPIClient after all code that uses is is removed
+    const apiClient = getAPIClient(params.network);
+    if (!apiClient) {
+      reject();
+      return;
+    }
+
+    const publicKey = params.publicKey
+      || (params.passphrase && extractPublicKey(params.passphrase));
+    const address = params.address || extractAddress(params.passphrase || publicKey);
+
+    apiClient.accounts.get({ address }).then((res) => {
+      if (res.data.length > 0) {
+        resolve({
+          ...res.data[0],
+          // It is necessary to disable this rule, because eslint --fix would
+          // change it to publicKey || res.data[0].publicKey
+          // but that is not equivalent to the ternary if the first value is
+          // defined and the second one not.
+          // eslint-disable-next-line no-unneeded-ternary
+          publicKey: publicKey ? publicKey : res.data[0].publicKey,
+          serverPublicKey: res.data[0].publicKey,
+          token: tokenMap.GCC.key,
+        });
+      } else {
+        // when the account has no transactions yet (therefore is not saved on the blockchain)
+        // this endpoint returns { success: false }
+        resolve({
+          address,
+          publicKey,
+          balance: 0,
+          token: tokenMap.GCC.key,
+        });
+      }
+    }).catch(reject);
+  });
+
+export const setSecondPassphrase = (
+  feelAPIClient,
+  secondPassphrase,
+  publicKey,
+  passphrase,
+  timeOffset,
+  networkIdentifier,
+) =>
+  new Promise((resolve, reject) => {
+    const { transaction } = Feel
+      .registerSecondPassphrase({
+        passphrase,
+        secondPassphrase,
+        timeOffset,
+        networkIdentifier,
+      });
+    feelAPIClient.transactions.broadcast(transaction).then(() => {
+      resolve(transaction);
+    }).catch(reject);
+  });
+
+export const btc = { // Temporary btc account utility while we don't normalize the apis calls.
+  extractAddress: /* istanbul ignore next */ (passphrase, netCode) =>
+    api.BTC.account.extractAddress(passphrase, netCode),
+};

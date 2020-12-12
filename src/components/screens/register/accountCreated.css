@@ -1,0 +1,21 @@
+@import '../../../app/mixins.css';
+
+:root {
+  --avatar-padding: 13px;
+  --avatar-size: calc(105px - var(--avatar-padding));
+}
+
+.illustration {
+  margin: 42px 0;
+}
+
+.text {
+  width: 350px !important;
+}
+
+.titleHolder {
+  @mixin contentNormal;
+
+  margin: 0;
+  color: var(--color-slate-gray);
+}

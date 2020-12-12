@@ -1,0 +1,115 @@
+.status {
+  box-sizing: border-box;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--color-light-gray);
+
+  &.forging {
+    border-color: var(--color-deep-green);
+    background-color: var(--color-deep-green);
+  }
+
+  &.awaitingSlot {
+    border-color: var(--color-deep-green);
+  }
+
+  &.notForging {
+    border-color: var(--color-burnt-sienna);
+    background-color: var(--color-burnt-sienna);
+  }
+
+  &.missedBlock {
+    border-color: var(--color-burnt-sienna);
+  }
+}
+
+.approvalTitle {
+  padding-left: 0;
+  padding-right: 0;
+
+  & > span {
+    display: inline-block;
+  }
+}
+
+.content {
+  padding: 0 !important;
+}
+
+.voteRow {
+  align-items: flex-start;
+}
+
+.votesColumnTitle {
+  justify-content: flex-start !important;
+}
+
+.votesColumn {
+  display: inline-block;
+
+  & .vote,
+  & .unVote {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    padding-bottom: var(--vertical-padding-l);
+  }
+
+  & .icon {
+    display: inline-block;
+    vertical-align: top;
+    width: 20px;
+  }
+
+  & .vote {
+    & .icon {
+      color: var(--color-deep-green);
+    }
+  }
+
+  & .delegatesList {
+    display: inline-block;
+    width: calc(100% - 20px);
+    vertical-align: top;
+    word-break: break-word;
+
+    & span {
+      display: inline;
+
+      &:not(:last-child)::after {
+        content: '•';
+        display: inline-block;
+        padding: 0 5px;
+      }
+    }
+  }
+}
+
+.tableRow {
+  & > span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+  }
+
+  & > span:last-child {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  & > .noEllipsis {
+    text-overflow: initial;
+  }
+}
+
+@media (--large-viewport) {
+  .statusTitle {
+    padding-right: 0;
+  }
+}
+
+.statusToolip {
+  white-space: nowrap;
+}

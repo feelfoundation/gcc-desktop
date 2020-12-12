@@ -1,0 +1,26 @@
+.DS_Store
+dist
+node_modules
+npm-debug.log
+src/.nyc_output
+coverage
+app/report.html
+app/*.map
+app/build
+app/build-testnet
+app/package-lock.json
+*.sw[pon]
+app/app.js
+.vscode
+.idea
+blockchain_explorer.db.gz
+reports
+test/cypress/screenshots/
+test/cypress/videos/
+.history
+storybook-static
+.env
+
+## Commercial fonts
+src/assets/fonts/basier-circle/
+src/assets/fonts/gilroy/

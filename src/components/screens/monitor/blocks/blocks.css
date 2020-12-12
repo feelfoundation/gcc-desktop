@@ -1,0 +1,30 @@
+.content {
+  padding: 0 !important;
+}
+
+.showM {
+  visibility: hidden;
+  display: none;
+}
+
+@media (--medium-viewport) {
+  .showM {
+    visibility: initial;
+    display: initial;
+  }
+}
+
+.tableRow {
+  & > span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+  }
+
+  & > span:last-child {
+    padding-left: 0px;
+    padding-right: 0px;
+    text-overflow: initial;
+  }
+}

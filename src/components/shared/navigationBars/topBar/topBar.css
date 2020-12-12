@@ -1,0 +1,119 @@
+@import '../../../../app/mixins.css';
+
+.wrapper {
+  background: var(--color-top-bar);
+  display: flex;
+  height: var(--header-height);
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  z-index: calc(var(--normal-index) + 1);
+}
+
+.group {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.logo {
+  width: 35px;
+  height: 100%;
+  padding: 0 0px 0 12px;
+  box-sizing: content-box;
+  filter: brightness(100);
+}
+
+.toggle {
+  width: 20px;
+  height: 100%;
+  padding: 0 6px;
+  box-sizing: content-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &.disabled {
+    opacity: 0.5;
+  }
+
+  & .searchContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .searchContainerParam {
+    background-color: var(--color-search-container);
+    border-radius: 3px;
+    padding: 8px 10px;
+    margin-left: -10px;
+
+    & .searchedValue {
+      @mixin contentLarge normal;
+
+      color: #f7f9fb;
+      padding-left: 10px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    & .accountVisual {
+      padding-left: 10px;
+    }
+  }
+}
+
+.timer {
+  display: none !important;
+}
+
+.signIn {
+  margin: 7px 24px 0 0;
+}
+
+.tooltipWrapper {
+  margin-right: 16px;
+}
+
+@media (--medium-viewport) {
+  .toggle {
+    margin-right: 10px;
+  }
+}
+
+.toplangselect {
+  height: 36px;
+  margin: 7px;
+  border-radius: 3px;
+  padding: 0 10px;
+  background-color: transparent;
+  color: grey;
+  border: transparent;
+}
+
+.toplangflag {
+  display: flex;
+  padding: 15px 5px;
+}
+
+.toplangflag > span > div {
+  border: 0 !important;
+  margin: 0 5px;
+  cursor: pointer;
+  display: none;
+}
+
+.topbarToggle {
+  margin-left: 7px;
+}
+
+@media (--medium-viewport) {
+  .toggleBookmark {
+    display: none;
+  }
+
+  .toggleSearch {
+    display: none;
+  }
+}

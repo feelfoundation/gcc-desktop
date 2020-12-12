@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <base href="./">
+        <meta charset="utf-8">
+        <meta name="application-name" content="feel-desktop-<%= htmlWebpackPlugin.options.VERSION %>" data-feel-desktop-version="<%= htmlWebpackPlugin.options.VERSION %>">
+        <meta name="viewport" content="width=device-width">
+        <meta name="keywords" content="Feel, Feel, wallet">
+        <meta property="og:title" content="Feel">
+        <meta property="og:description" name="description" content="Feel is an all-in-one solution to manage your Feel ID, access and send GCC tokens, as well as vote for delegates.">
+        <meta property="og:image" content="https://feel.io/hub/assets/images/og-logo.png">
+        
+        <link rel="apple-touch-icon" sizes="57x57" href="./assets/icon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="./assets/icon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="./assets/icon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="./assets/icon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="./assets/icon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="./assets/icon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="./assets/icon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="./assets/icon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="./assets/icon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="./assets/icon/android-icon-192x192.png">
+        <link rel="manifest" href="./assets/icon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="./assets/icon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        
+        <title>Feel</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+        <style>
+          <%= compilation.assets['head.css'].source() %>
+        </style>
+
+        <%= htmlWebpackPlugin.files.css.map(href =>
+          '<link href="' + href + '" rel="stylesheet">'
+        ).join('\n') %>
+        <link rel="icon" type="image/png" href="./assets/images/FEEL.png" />
+        <script>
+          /* Following comment is a placeholder used by `npm run build:testnet`, do not remove */
+          var defaultNet = "mainnet";//defaultNetwork
+          (function(targetNet) {
+            if (window.localStorage && !window.localStorage.getItem('defaultNetwork')){
+              window.localStorage.setItem('defaultNetwork', defaultNet);
+            }
+          })(defaultNet);
+        </script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <div class='splash-screen'>
+        <figure class='logo'>
+            <img alt="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQwIDc5LjE2MDQ1MSwgMjAxNy8wNS8wNi0wMTowODoyMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODk2MjE0RkQxMDFCMTFFQjhFQ0REQkFBQ0M1OUM3M0EiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODk2MjE0RkUxMDFCMTFFQjhFQ0REQkFBQ0M1OUM3M0EiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4OTYyMTRGQjEwMUIxMUVCOEVDRERCQUFDQzU5QzczQSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4OTYyMTRGQzEwMUIxMUVCOEVDRERCQUFDQzU5QzczQSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgsjvbQAAAQ+SURBVHja7FpZSFVRFL2vjAYqygqC7KMyjDIyKD/EIAwpoWzyo9QGiwaplOqnKBqgIhqtHKqPoJkimj+aiSSjecDmog/xQysyXmHRYGvjfrA7nKu+d899+exuWNx9rvu9e9bd5+zhPH11dXVWS5ZWVgsXj6BH0CPoEfQIegQbkKhQP1j2qDIVl0uAP8xz7gAcA7JokJTQq0Fjn5NKBiSv4pLyDxwTC7xtCkGnS3SsMv4FfHeZ3NoAuaaIz2ktCi/m41LAwx9AGlAJtHaJ4FM5aMyDUQYeuAMYAUwG2gDpQH5zCTKNehAemocLGf22MfkGDAKWiXujOQCl8X6pdWv+9FLhxWInHkwA5gf54CNAd96TO1120jmgOOQgg7eTi8vjIB/aDVjDXix2kVw15pduYg9OUiLXfeAW0Enco2UczXuQZDVQBCwA2vL+dBLRKDr35mUfkExjURR7kZbaIh6W480N5vuqaSmQzPo9YLhBj50CJrB+DRhlLA/ii/JwqeFhPIhtszHNEfowjq4mJEOQI5nuRi2aIfTFIJmgsXkDbBDjvQbSUTtgnxiv4FxrliC8SKXZFXHrpI0pTaCa9WgDgWa32O/vlRdovFTLEsGiD7DQxm6m0OcAg0MkNxCYIcbTjCZ6m4CTq3iFvPRJY3qBkz7JM2C9SNB20gXYD3zh8UPOxSTngXHBlGoh16Ig+RyXATKiacy68lINZg9WAP05LVCBUaKQ/xwMQSfdxBShU8uUqrEhr64M8ntTmFxHhdwqlZzr3QS8WCAKa9r8PW1qVoqs/YRdCZdyqtzh5UlyEMhm/R3Q1ybwud4u+fltB6JdrsZsKPCAdT9XJA15Q9qTJAJ3QyFo4kxGJlzaM0M0NhQoDrNO4b68ke88IfSzduTCdehE5dNFMT5kY5crlm8M16o6WaAsx5lOJmfqVC1L6PFAnsbGz/lQBo0eig15d7MYL7JJP2En+BFYrnT53TR2VG49Es8+rvz9ANCe9VdAodOJmTwX3Qi8VMjoRFYlI4GJrCcrxXSOiUmZPviVE6S+cIzG5gmwS4x3ste2insUkMqaI8EXwB7l6EJXxeSLYjyGSSfyuFbZq82KoMXF91dRqm3S2FDynS3GsUJfYvKQyg2CP4Gpsm8E4jR2VDjfUO5d5mLBas4EAyddsm8808BZj6XsPSsSCJLMEnqcpT96VNMLReLOkUKwgvdTQAqtv0/htlj1v20QqSq+R8V6UaQQJNnOnQRJa1HGUV+3lDsGkvHiM9kOuv+wEyTJVHJjErBOEKV+8bZV/5tfQE5b9eeoEUHwrlLV3OSCOiDlIr0EpC97OCIIWpzzdP3fLvYWyQeFZGkkEbQ0jXCNpuso4hdxij0dUQSPAteV5lgndNQ/N5KCjJQp4ozlmI3Na16uRiQqzASruJMvC9cDfd7/i3oEPYIeQY+gR/A/JvhHgAEA/rv+df/iFbkAAAAASUVORK5CYII=">
+          <div class="lds-ring">
+              <div> </div>
+              <div> </div>
+              <div> </div>
+              <div> </div>
+          </div>
+        </figure>
+        </div>
+        <%= htmlWebpackPlugin.files.js.map(href =>
+          '<script type="text/javascript" src="' + href + '"></script>'
+        ).join('\n') %>
+</html>

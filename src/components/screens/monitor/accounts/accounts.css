@@ -1,0 +1,13 @@
+.content {
+  padding: 0 !important;
+  counter-reset: section;
+}
+
+.counter::before {
+  counter-increment: section;
+  content: "#" counter(section);
+}
+
+.balanceShare {
+  white-space: nowrap;
+}

@@ -1,0 +1,91 @@
+/*****************************************
+
+Please Read the guide line
+before adding any rules here
+
+# No component specific rule
+This file is intended to solely include
+global/common rules, every rule added here
+must be used at least in 2 different
+components.
+
+# Usecases
+Rules defined here must be related
+to positioning and visibility or the overal
+behaviour of the application e.g. scrolling
+or text selection color.
+
+# Avoid !important
+Please avoid using !important since it will
+result in many compulsory !important usages
+all over the application
+
+# Use with :global
+As name of the file suggests, The rules
+defined here must initiate with :global in
+order to be available application wide
+
+****************************************/
+
+:global .hidden {
+  position: absolute;
+  visibility: hidden;
+}
+
+:global .boxPadding {
+  padding: 0px 30px;
+}
+
+:global ::-webkit-scrollbar {
+  width: 8px;
+}
+
+:global ::-webkit-scrollbar-track {
+  width: 8px;
+  background: transparent;
+}
+
+:global ::-webkit-scrollbar-thumb {
+  width: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.7);
+}
+
+:global ::-webkit-scrollbar-thumb:hover {
+  width: 10px;
+  background-color: rgba(128, 128, 128, 1);
+}
+
+:global ::-webkit-scrollbar-button {
+  display: none;
+}
+
+@media (--medium-viewport) {
+  :global .hidden-m {
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+@media (--small-viewport) {
+  :global .boxPadding {
+    padding: 0px 20px;
+  }
+}
+
+:global .hideOnLargeViewPort {
+  display: none;
+
+  @media (--medium-viewport) {
+    display: inherit;
+  }
+}
+
+:global .showOnLargeViewPort {
+  display: inherit;
+
+  @media (--medium-viewport) {
+    display: none;
+  }
+}

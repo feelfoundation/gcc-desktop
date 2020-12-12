@@ -1,0 +1,35 @@
+@import '../../../app/mixins.css';
+
+.wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--horizontal-padding-l) 0;
+
+  & > h1 {
+    @mixin headingLarge bold;
+
+    margin-bottom: 20px;
+    color: var(--color-maastricht-blue);
+  }
+
+  & > p {
+    @mixin contentLarge;
+
+    color: var(--color-slate-gray);
+    margin: 10px 0;
+  }
+
+  & .button {
+    width: var(--footer-button-width);
+    margin: 10px 0 20px;
+  }
+
+  & > img {
+    width: 128px;
+    margin-top: var(--horizontal-padding-l);
+  }
+}

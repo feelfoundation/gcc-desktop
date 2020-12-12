@@ -1,0 +1,19 @@
+{
+  "name": "feel-desktop",
+  "version": "1.27.1",
+  "productName": "Feel-desktop",
+  "description": "Feel-desktop is a crypto wallet.",
+  "main": "./build/main.js",
+  "author": {
+    "name": "Feel Foundation",
+    "email": "admin@feel.surf"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "get-port": "^4.1.0",
+    "node-abi": "^2.7.1",
+    "node-hid": "^1.2.0",
+    "usb": "^1.6.2",
+    "express":"4.16.4"
+  }
+}
